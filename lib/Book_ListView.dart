@@ -62,25 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           }, barrierDismissible: false);
                         }
                         else{
-                          showModalBottomSheet(
-                              isDismissible: false,
-                              context: context,
-                              builder: (context){
-                                return SizedBox(
-                                  height: 300,
-                                  child: Center(
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("OK"),
-                                    ),
-                                  ),
-                                );
-                              }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: const Text("OK"),
+                                  duration: const Duration(seconds: 30),
+                                  action: SnackBarAction(
+                                    label: 'OK',
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                    },
+                                  )
+                              )
                           );
                         }
-
                       },
                       child: Text(index.toString())
                   ),
